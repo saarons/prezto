@@ -1,0 +1,14 @@
+[user]
+  name = Sam Aarons
+  email = samaarons@gmail.com
+[push]
+  default = tracking
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[format]
+  pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
