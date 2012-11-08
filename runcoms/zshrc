@@ -12,3 +12,32 @@ fi
 
 # Customize to your needs...
 
+if [[ "$OSTYPE" == darwin* ]]; then
+  export EDITOR="subl -w"
+  export VISUAL="subl -w"
+  export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.1"
+  export NODE_PATH="/usr/local/lib/node_modules"
+  
+  alias gdm="git diff HEAD | subl --stay"
+  alias et="subl ."
+fi
+
+unsetopt SHARE_HISTORY
+
+alias gs="git status"
+alias gpo='git push origin "$(git-branch-current)"'
+alias gcam="git commit -a -m"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+alias gpr="git pull --rebase"
+alias gaa="git add -A"
+
+alias bu="bundle update"
+alias bi="bundle install"
+alias bc="bundle console"
+alias be="bundle exec"
+
+alias rs="rors"
+alias rc="rorc"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+fpath=(~/.rvm/scripts/zsh/Completion $fpath)

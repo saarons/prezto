@@ -1,0 +1,63 @@
+#
+# A theme for wide terminals based on Steve Losh's prompt.
+#
+# Authors:
+#   Sam Aarons <samaarons@gmail.com>
+#
+# Screenshots:
+#   http://cl.ly/EReg
+#
+
+pmodload 'helper'
+
+function prompt_char {
+  if [[ -n "${git_info:+${(e)git_info[prompt]}}" ]]; then
+    print '±'
+  else
+    print '○'
+  fi
+}
+
+function prompt_saarons_precmd {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+
+  if (( $+functions[git-info] )); then
+    git-info
+  fi
+}
+
+function prompt_saarons_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  autoload -Uz add-zsh-hook
+
+  add-zsh-hook precmd prompt_saarons_precmd
+
+  zstyle ':omz:module:editor' completing '%B%F{red}...%f%b'
+  
+  zstyle ':prezto:module:git:info:action' format ' during %%B%F{yellow}%s%f%%b'
+  zstyle ':prezto:module:git:info:added' format '%%B%F{green}+%f%%b'
+  zstyle ':prezto:module:git:info:ahead' format '%%B%F{green}↥%f%%b'
+  zstyle ':prezto:module:git:info:behind' format '%%B%F{yellow}↧%f%%b'
+  zstyle ':prezto:module:git:info:branch' format ' on %F{magenta}%b%f'
+  zstyle ':prezto:module:git:info:commit' format '%F{magenta}%c%f'
+  zstyle ':prezto:module:git:info:deleted' format '%%B%F{red}✗%f%%b'
+  zstyle ':prezto:module:git:info:modified' format '%%B%F{green}!%f%%b'
+  zstyle ':prezto:module:git:info:renamed' format '%%B%F{yellow}>%f%%b'
+  zstyle ':prezto:module:git:info:stashed' format '%%B%F{cyan}⇡%f%%b'
+  zstyle ':prezto:module:git:info:unmerged' format '%%B%F{cyan}#%f%%b'
+  zstyle ':prezto:module:git:info:untracked' format '%%B%F{green}?%f%%b'
+  zstyle ':prezto:module:git:info:position' format ' at %F{yellow}%p%f'
+  
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt'  '$(coalesce "%b" "%p")%A%a%B%d%m%r%S%U%u%s' \
+    'rprompt' '%c'
+
+  PROMPT='%F{magenta}%n%f at %F{yellow}%m%f in %B%F{green}%~%f%b${git_info:+${(e)git_info[prompt]}} $(prompt_char) '
+  RPROMPT='${git_info:+${(e)git_info[rprompt]}}'
+}
+
+prompt_saarons_setup "$@"
