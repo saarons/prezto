@@ -12,3 +12,5 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+[heroku]
+	account = personal
