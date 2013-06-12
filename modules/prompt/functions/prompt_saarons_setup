@@ -36,8 +36,7 @@ function prompt_saarons_setup {
 
   add-zsh-hook precmd prompt_saarons_precmd
 
-  zstyle ':omz:module:editor' completing '%B%F{red}...%f%b'
-  
+  zstyle ':prezto:module:git:info' verbose 'yes'  
   zstyle ':prezto:module:git:info:action' format ' during %%B%F{yellow}%s%f%%b'
   zstyle ':prezto:module:git:info:added' format '%%B%F{green}+%f%%b'
   zstyle ':prezto:module:git:info:ahead' format '%%B%F{green}↥%f%%b'
