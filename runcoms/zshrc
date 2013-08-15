@@ -20,7 +20,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export PATH="/usr/local/share/npm/bin:/usr/local/heroku/bin:$PATH"
   
   alias gdm="git diff HEAD | subl --stay"
-  alias et="subl ."
 fi
 
 unsetopt SHARE_HISTORY
@@ -44,6 +43,15 @@ alias fetch="rsync --archive --compress --partial --progress --append --ipv4"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fpath=(~/.rvm/scripts/zsh/Completion $fpath)
+
+et() {
+  ls -l *.sublime-project
+  if [[ "$?" = "0" ]]; then
+    subl *.sublime-project
+  else
+    subl .
+  fi
+}
 
 admin() {
   heroku $* --app everlane-admin
