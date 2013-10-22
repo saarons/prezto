@@ -45,11 +45,11 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fpath=(~/.rvm/scripts/zsh/Completion $fpath)
 
 et() {
-  ls -l *.sublime-project
-  if [[ "$?" = "0" ]]; then
-    subl *.sublime-project
-  else
+  stat *.sublime-project &> /dev/null
+  if [[ $? -ne 0 ]]; then
     subl .
+  else
+    subl *.sublime-project
   fi
 }
 
