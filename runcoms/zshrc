@@ -46,9 +46,9 @@ fpath=(~/.rvm/scripts/zsh/Completion $fpath)
 
 et() {
   if test -n "$(find . -maxdepth 1 -name '*.sublime-project' -print -quit)"; then
-    subl *.sublime-project
+    subl -s *.sublime-project
   else
-    subl .
+    subl -s .
   fi
 }
 
