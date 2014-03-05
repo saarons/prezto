@@ -22,6 +22,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias gdm="git diff HEAD | subl --stay"
 fi
 
+if [[ -s "/usr/local/bin/aws_zsh_completer.sh" ]]; then
+  source "/usr/local/bin/aws_zsh_completer.sh"
+fi
+
 unsetopt SHARE_HISTORY
 
 alias gs="git status"
