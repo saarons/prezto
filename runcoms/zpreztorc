@@ -36,7 +36,8 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'ruby' \
   'archive' \
-  'rails'
+  'rails' \
+  'command-not-found'
 
 #
 # Editor
