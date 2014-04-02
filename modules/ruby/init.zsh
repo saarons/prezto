@@ -14,6 +14,15 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   # Source RVM.
   source "$HOME/.rvm/scripts/rvm"
 
+# Load RVM multi-user install into the shell session.
+elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
+  # Unset AUTO_NAME_DIRS since auto adding variable-stored paths to ~ list
+  # conflicts with RVM.
+  unsetopt AUTO_NAME_DIRS
+
+  # Source RVM.
+  . "/etc/profile.d/rvm.sh"  
+
 # Load manually installed rbenv into the shell session.
 elif [[ -s "$HOME/.rbenv/bin/rbenv" ]]; then
   path=("$HOME/.rbenv/bin" $path)
