@@ -25,6 +25,10 @@ function prompt_saarons_precmd {
   if (( $+functions[git-info] )); then
     git-info
   fi
+
+  if (( $+functions[python-info] )); then
+    python-info
+  fi
 }
 
 function prompt_saarons_setup {
@@ -36,26 +40,29 @@ function prompt_saarons_setup {
 
   add-zsh-hook precmd prompt_saarons_precmd
 
-  zstyle ':prezto:module:git:info' verbose 'yes'  
-  zstyle ':prezto:module:git:info:action' format ' during %%B%F{yellow}%s%f%%b'
-  zstyle ':prezto:module:git:info:added' format '%%B%F{green}+%f%%b'
-  zstyle ':prezto:module:git:info:ahead' format '%%B%F{green}↥%f%%b'
-  zstyle ':prezto:module:git:info:behind' format '%%B%F{yellow}↧%f%%b'
-  zstyle ':prezto:module:git:info:branch' format ' on %F{magenta}%b%f'
-  zstyle ':prezto:module:git:info:commit' format '%F{magenta}%c%f'
-  zstyle ':prezto:module:git:info:deleted' format '%%B%F{red}✗%f%%b'
-  zstyle ':prezto:module:git:info:modified' format '%%B%F{green}!%f%%b'
-  zstyle ':prezto:module:git:info:renamed' format '%%B%F{yellow}>%f%%b'
-  zstyle ':prezto:module:git:info:stashed' format '%%B%F{cyan}⇡%f%%b'
-  zstyle ':prezto:module:git:info:unmerged' format '%%B%F{cyan}#%f%%b'
-  zstyle ':prezto:module:git:info:untracked' format '%%B%F{green}?%f%%b'
-  zstyle ':prezto:module:git:info:position' format ' at %F{yellow}%p%f'
+  zstyle ':prezto:module:python:info:virtualenv' format ' using %F{yellow}%v%f '
+
+  zstyle ':prezto:module:git:info' verbose 'yes'
+
+  zstyle ':prezto:module:git:info:action'    format ' during %B%F{yellow}%s%f%b'
+  zstyle ':prezto:module:git:info:added'     format '%B%F{green}+%f%b'
+  zstyle ':prezto:module:git:info:ahead'     format '%B%F{green}↥%f%b'
+  zstyle ':prezto:module:git:info:behind'    format '%B%F{yellow}↧%f%b'
+  zstyle ':prezto:module:git:info:branch'    format ' on %F{magenta}%b%f'
+  zstyle ':prezto:module:git:info:commit'    format '%F{magenta}%c%f'
+  zstyle ':prezto:module:git:info:deleted'   format '%B%F{red}✗%f%b'
+  zstyle ':prezto:module:git:info:modified'  format '%B%F{green}!%f%b'
+  zstyle ':prezto:module:git:info:renamed'   format '%B%F{yellow}>%f%b'
+  zstyle ':prezto:module:git:info:stashed'   format '%B%F{cyan}⇡%f%b'
+  zstyle ':prezto:module:git:info:unmerged'  format '%B%F{cyan}#%f%b'
+  zstyle ':prezto:module:git:info:untracked' format '%B%F{green}?%f%b'
+  zstyle ':prezto:module:git:info:position'  format ' at %F{yellow}%p%f'
   
   zstyle ':prezto:module:git:info:keys' format \
     'prompt'  '$(coalesce "%b" "%p")%A%a%B%d%m%r%S%U%u%s' \
     'rprompt' '%c'
 
-  PROMPT='%F{magenta}%n%f at %F{yellow}%m%f in %B%F{green}%~%f%b${git_info:+${(e)git_info[prompt]}} $(prompt_char) '
+  PROMPT='%F{magenta}%n%f at %F{yellow}%m%f in %B%F{green}%~%f%b${git_info:+${(e)git_info[prompt]}}$(coalesce "$python_info[virtualenv]" " ")$(prompt_char) '
   RPROMPT='${git_info:+${(e)git_info[rprompt]}}'
 }
 
