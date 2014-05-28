@@ -11,6 +11,5 @@
   pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
 [core]
   excludesfile = ~/.gitignore
-  autocrlf = input
 [heroku]
 	account = personal
