@@ -45,7 +45,6 @@ alias rc="rorc"
 
 alias fetch="rsync --archive --compress --partial --progress --append --ipv4"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fpath=(~/.rvm/scripts/zsh/Completion $fpath)
 
 et() {
@@ -53,42 +52,5 @@ et() {
     subl -s *.sublime-project
   else
     subl -s .
-  fi
-}
-
-admin() {
-  heroku $* --app everlane-admin
-}
- 
-staging() {
-  heroku $* --app everlane-staging
-}
- 
-prod() {
-  heroku $* --app everlane
-}
- 
-clear_cache() {
-  prod run rake cache:clear
-  say "Cache cleared"
-}
- 
-deploy_prod() {
-  if deploy_admin && git push production master:master -f ;then
-    say "Production deployed"
-    return 0
-  else
-    say "Error deploying production"
-    return 1
-  fi
-}
- 
-deploy_admin () {
-  if git push admin master:master -f && admin run rake db:migrate && admin restart ;then
-    say "Admin deployed"
-    return 0
-  else
-    say "Error deploying admin"
-    return 1
   fi
 }

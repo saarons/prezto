@@ -34,9 +34,9 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'prompt' \
   'git' \
-  'ruby' \
   'python' \
   'archive' \
+  'ruby' \
   'rails' \
   'command-not-found'
 
