@@ -13,12 +13,12 @@ fi
 # Customize to your needs...
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  export EDITOR="subl -w"
-  export VISUAL="subl -w"
+  export EDITOR="atom -w"
+  export VISUAL="atom -w"
   export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
   export JAVA_HOME=/Library/Java/Home
   export PATH="/usr/local/share/npm/bin:/usr/local/heroku/bin:$PATH"
-  
+
   alias gdm="git diff HEAD | subl --stay"
 fi
 
@@ -48,9 +48,5 @@ alias fetch="rsync --archive --compress --partial --progress --append --ipv4"
 fpath=(~/.rvm/scripts/zsh/Completion $fpath)
 
 et() {
-  if test -n "$(find . -maxdepth 1 -name '*.sublime-project' -print -quit)"; then
-    subl -s *.sublime-project
-  else
-    subl -s .
-  fi
+  atom -s .
 }
