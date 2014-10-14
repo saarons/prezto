@@ -42,4 +42,3 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #
 
 alias py='python'
-
