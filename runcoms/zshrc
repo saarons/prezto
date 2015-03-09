@@ -16,7 +16,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export EDITOR="atom -w"
   export VISUAL="atom -w"
   export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
-  export JAVA_HOME=/Library/Java/Home
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home"
   export PATH="/usr/local/share/npm/bin:/usr/local/heroku/bin:$PATH"
 
   alias gdm="git diff HEAD | subl --stay"
